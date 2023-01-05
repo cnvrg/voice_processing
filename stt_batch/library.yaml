@@ -1,0 +1,34 @@
+title: Voice Processing Batch
+version: 1.0.0
+description: speech-to-text
+icon: python
+
+author: "cnvrg"
+author_email: "libhub@cnvrg.io"
+
+tags:
+  - training
+command: python3 stt.py
+
+requirements:
+  cpu: 3.5
+  memory: 8
+  gpu: 0
+  hpu: 0
+
+image: python:3.8.10
+language: python3
+
+arguments:
+  - key: speech
+    type: 'categorical'
+    values:
+      - '/input/s3_connector/voice_processing/audio.wav'
+  - key: language
+    type: 'categorical'
+    values:
+      - 'english'
+  - key: model_size
+    type: 'categorical'
+    values:
+      - 'medium'

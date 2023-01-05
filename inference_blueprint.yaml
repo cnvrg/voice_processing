@@ -1,0 +1,56 @@
+title: Voice Processing Inference
+version: 1.0.0
+description: Training whisper ai model to convert english text to speech 
+long_description: Training whisper ai model to convert english text to speech
+author: "cnvrg"
+author_email: "libhub@cnvrg.io"
+
+tags:
+  - inference
+
+tasks:
+  - title: inference
+    top: 400
+    left: 300
+ 
+    type: deploy
+
+    library: voice-processing-inference
+    library_version: 1.0.0
+
+    command: python3 stt.py
+    kind: webservice
+    requirements:
+      cpu: 3.5
+      memory: 16
+      gpu: 0
+      hpu: 0
+
+    image: python:3.8.10
+    language: python3
+
+    accept_files: false
+
+    file_name: stt_inf.py
+    flask_config:
+    - key: DEBUG
+      value: 'True'
+    - key: TESTING
+      value: 'True'
+    function_name: predict
+    gunicorn_config:
+      - key: workers
+        value: '1'
+    prep_file: ''
+    prep_function: ''
+    input_example:
+      file: text
+      language: text
+      model_size: text
+    input_schema:
+      file: text
+      language: text
+      model_size: text
+    output_schema: {}
+      
+relations: []

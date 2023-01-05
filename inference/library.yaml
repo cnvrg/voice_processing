@@ -1,0 +1,46 @@
+title: Voice Processing Inference
+version: 1.0.0
+description: Endpoint
+icon: python
+author: "cnvrg"
+author_email: "libhub@cnvrg.io"
+tags:
+  - inference
+
+kind: webservice
+
+command: python3 stt_inf.py
+
+requirements:
+  cpu: 4
+  memory: 16
+  gpu: 0
+  hpu: 0
+
+image: python:3.8.10
+
+language: python3
+
+arguments:
+  accept_files: True
+  file_name: stt_inf.py
+  flask_config:
+  - key: DEBUG
+    value: 'True'
+  - key: TESTING
+    value: 'True'
+  function_name: predict
+  gunicorn_config:
+  - key: workers
+    value: '1'
+  prep_file: ''
+  prep_function: ''
+  input_example:
+    file: text
+    language: text
+    model_size: text
+  input_schema:
+    file: text
+    language: text
+    model_size: text
+  output_schema: {}         

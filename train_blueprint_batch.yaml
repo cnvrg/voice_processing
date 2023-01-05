@@ -1,0 +1,87 @@
+title: Voice Processing Batch
+version: 1.0.0
+description: Training whisper ai model to convert english text to speech 
+long_description: Training whisper ai model to convert english text to speech
+
+author: "cnvrg"
+author_email: "libhub@cnvrg.io"
+
+tags:
+  - training
+
+tasks:
+  - title: s3_connector
+    top: 300
+    left: 0
+
+    type: exec
+
+    library: s3-connector15
+    library_version: 1.0.0
+
+    command: python s3_connector.py
+
+    requirements:
+      cpu: 3.5
+      memory: 8
+      gpu: 0
+      hpu: 0
+
+    image: cnvrg/cnvrg:v5.0
+    language: python3
+
+    params:
+      - key: endpoint
+        type: 'categorical'
+        values:
+          - 'http://s3.amazonaws.com download'
+      - key: bucketname
+        type: 'categorical'
+        values:
+          - 'libhub-readme'
+      - key: localdir
+        type: 'categorical'
+        values:
+          - '/cnvrg'
+      - key: prefix
+        type: 'categorical'
+        values:
+          - 'voice_processing/'
+          
+  - title: voice_processing
+    top: 300
+    left: 250
+
+    type: exec
+
+    library: voice-processing-batch
+    library_version: 1.0.0
+
+    command: python3 stt.py
+
+    requirements:
+      cpu: 3.5
+      memory: 8
+      gpu: 0
+      hpu: 0
+
+    image: python:3.8.10
+    language: python3
+
+    params:
+      - key: speech
+        type: 'categorical'
+        values:
+          - '/input/s3_connector/voice_processing/speech_orig.wav'
+      - key: language
+        type: 'categorical'
+        values:
+          - 'english'
+      - key: model_size
+        type: 'categorical'
+        values:
+          - 'medium'
+
+relations:
+  - from: s3_connector
+    to: voice_processing

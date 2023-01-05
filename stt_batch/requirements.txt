@@ -1,0 +1,7 @@
+torch
+tqdm
+more-itertools
+transformers>=4.19.0
+git+https://github.com/openai/whisper.git
+pytube
+iso639
