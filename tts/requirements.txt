@@ -1,0 +1,7 @@
+espnet==0.10.6
+pyopenjtalk
+pypinyin==0.44.0
+gdown==4.4.0
+librosa==0.8.1
+parallel_wavegan 
+espnet_model_zoo 
