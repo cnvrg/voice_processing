@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Search for token
+      - name: Check for token
         run: |
-          grep -r -l "token" .
+          grep -r 'token' .
