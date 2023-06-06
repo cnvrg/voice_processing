@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Check for token
         run: |
-          grep -r 'token' .
+          grep -r -e 'token' -e 'certificate' -e 'key' .
