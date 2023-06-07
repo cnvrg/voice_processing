@@ -13,16 +13,13 @@ for COMMIT in $COMMITS; do
     # Get the list of files changed in the commit
     FILES=$(git diff-tree --no-commit-id --name-only -r $COMMIT)
 
-    # Loop through each changed file
-    for FILE in $FILES; do
         # Check if the file exists before searching for the token pattern
-        if [ -f "$FILE" ]; then
-            # Check if the file contains the token pattern
-            if grep -q "$TOKEN_PATTERN" "$FILE"; then
-                echo "Token pattern found in file: $FILE"
-            fi
-        fi
-    done
+	if [ -f "$FILE" ]; then
+		# Check if the file contains the token pattern
+		if grep -q "$TOKEN_PATTERN" "$FILE"; then
+			echo "Token pattern found in file: $FILE"
+		fi
+	fi
 
     echo
 done
