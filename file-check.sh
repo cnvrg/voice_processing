@@ -17,7 +17,7 @@ for COMMIT in $COMMITS; do
     # Loop through each changed file
     for FILE in $FILES; do
         # Check if the file contains either token pattern
-        if grep -q -E "$TOKEN_PATTERN_1|$TOKEN_PATTERN_2" "$FILE"; then
+        if grep -q -w -E "$TOKEN_PATTERN_1|$TOKEN_PATTERN_2" "$FILE"; then
             echo "Token pattern found in file: $FILE"
         fi
     done
